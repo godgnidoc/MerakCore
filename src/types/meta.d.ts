@@ -1,8 +1,6 @@
-import { Node } from "./model"
-
 /** Combined definition of all data type categoies */
 export type DataType = BooleanDataType | IntegerDataType | NumberDataType | StringDataType
-    | AnyDataType | ArrayDataType | StructDataType | UnionDataType | ReferenceDataType
+    | ArrayDataType | StructDataType | UnionDataType | ReferenceDataType
 
 /** Basic data type definitions */
 export interface BooleanDataType {
@@ -41,16 +39,7 @@ export interface StringDataType {
     readonly name: 'string'
 
     /** category of type definition */
-    readonlycategory: 'string'
-}
-
-/** Basic data type definitions */
-export interface AnyDataType {
-    /** type name of type definition */
-    readonly name: 'any'
-
-    /** category of type definition */
-    readonly category: 'any'
+    readonly category: 'string'
 }
 
 /** Array data type definition */
@@ -140,57 +129,9 @@ export interface NodeType {
     readonly attrs: ReadonlyMap<string, AttrType>
 }
 
-/** Describe acceptable end node according to the srart node */
-export interface EdgeConstraintFI {
-    from: ReadonlySet<NodeType>
-    includes: ReadonlySet<NodeType>
-}
-/** Describe rejected end node according to the srart node */
-export interface EdgeConstraintFE {
-    from: ReadonlySet<NodeType>
-    excludes: ReadonlySet<NodeType>
-}
-/** Describe acceptable start node according to the start node */
-export interface EdgeConstraintTI {
-    to: ReadonlySet<NodeType>
-    includes: ReadonlySet<NodeType>
-}
-/** Describe rejected start node according to the end node */
-export interface EdgeConstraintTE {
-    to: ReadonlySet<NodeType>
-    excludes: ReadonlySet<NodeType>
-}
-/** Describe acceptable peer node according to one side */
-export interface EdgeConstraintEI {
-    base: ReadonlySet<NodeType>
-    excludes: ReadonlySet<NodeType>
-}
-/** Describe rejected peer node according to one side */
-export interface EdgeConstraintEE {
-    base: ReadonlySet<NodeType>
-    excludes: ReadonlySet<NodeType>
-}
-
-export interface EdgeConstraintAnd {
-    conditions: EdgeConstraint[]
-}
-
-export interface EdgeConstraintOr {
-    conditions: EdgeConstraint[]
-}
-
-export type EdgeConstraintValidator = (from: Node, to: Node) => boolean
-
-export type EdgeConstraint = EdgeConstraintFI | EdgeConstraintFE | EdgeConstraintTI
-    | EdgeConstraintTE | EdgeConstraintEI | EdgeConstraintEE | EdgeConstraintAnd
-    | EdgeConstraintOr | EdgeConstraintValidator
-
 /** Edge type definition */
 export interface EdgeType {
 
     /** Attribute definitions of edge of this type */
     readonly attrs: ReadonlyMap<string, AttrType>
-
-    /** Describe constraints about relationships */
-    constraints: EdgeConstraint
 }
