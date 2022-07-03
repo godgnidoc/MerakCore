@@ -4,7 +4,7 @@
   "description": "Model based system designing tool",
   "repository": {
     "type": "git",
-    "url": "git@github.com:godgnidoc/MerakCore.git"
+    "url": "github.com:godgnidoc/MerakCore"
   },
   "main": "dist/index.js",
   "type": "module",
